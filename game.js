@@ -6,6 +6,7 @@ window.onload = function () {
             boundary.addEventListener("mouseover", () => {
                 document.querySelectorAll(".boundary").forEach((boundary) => {
                     boundary.classList.add("youlose");
+                    document.getElementById("status").innerText="Ouppss! You Lost.";
                 });
             });
         });
