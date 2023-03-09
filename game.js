@@ -11,8 +11,6 @@ window.onload = function () {
                     document.getElementById("status").innerText = "Ouppss! You Lost.";
                     start = false;
                     console.log(start);
-
-
                 });
 
             });
@@ -27,7 +25,6 @@ window.onload = function () {
             });
             score -= 10;
             document.getElementsByClassName("example")[0].innerText = score;
-
         });
     }
 
@@ -56,6 +53,26 @@ window.onload = function () {
     // Add mouseup event listener to the document
     document.addEventListener('mouseup', function (e) {
         isDragging = false;
+    });
+
+
+    const endRect = document.getElementById('end').getBoundingClientRect();
+    const startRect = document.getElementById('start').getBoundingClientRect();
+
+    document.getElementsByTagName("body")[0].addEventListener("click", () => {
+        let endRect = document.getElementById('end').getBoundingClientRect();
+        let startRect = document.getElementById('start').getBoundingClientRect();
+        let threshold = 0;
+        const isOverlap = !(
+            endRect.left > startRect.right + threshold &&
+            endRect.right < startRect.left - threshold
+        );
+        console.log(endRect.left, startRect.right, endRect.right, startRect.left, endRect.top, startRect.bottom, endRect.bottom, startRect.top);
+        if (isOverlap) {
+            document.getElementById("status").innerText = "You Won. ";
+            score += 5;
+            document.getElementsByClassName("example")[0].innerText = score;
+        }
     });
 
 
