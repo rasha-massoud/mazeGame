@@ -24,38 +24,20 @@ window.onload = function () {
     let isDragging = false;
     let offset = { x: 0, y: 0 };
 
-    // Add mousedown event listener to the div
     div.addEventListener('mousedown', function (e) {
         isDragging = true;
 
-        // Calculate the offset between the mouse position and the div position
         offset.x = e.clientX - div.offsetLeft;
         offset.y = e.clientY - div.offsetTop;
     });
 
-    // if (!start) {
-    //     document.getElementById("start").addEventListener("click", () => {
-    //         document.querySelectorAll(".boundary").forEach((boundary) => {
-    //             boundary.classList.remove("youlose");
-    //         });
-    //         once = 0;
-    //         start = true;
-    //         updateTextandScore("Begin by moving your mouse over the \"S\" ", 0);
-    //     });
-    // }
-
-    // Add mousemove event listener to the document
     document.addEventListener('mousemove', function (e) {
         if (isDragging) {
-            // Update the position of the div to follow the mouse
-            Xaxis = (e.clientX - offset.x) + 'px';
-            Yaxis = (e.clientY - offset.y) + 'px';
             div.style.left = (e.clientX - offset.x) + 'px';
             div.style.top = (e.clientY - offset.y) + 'px';
         }
     });
 
-    // Add mouseup event listener to the document
     document.addEventListener('mouseup', function (e) {
         isDragging = false;
     });
@@ -71,7 +53,7 @@ window.onload = function () {
             updateTextandScore("You Won.", score + 5);
         }
 
-        if (!start) {
+        if (!start) {   
             document.getElementById("start").addEventListener("click", () => {
                 document.querySelectorAll(".boundary").forEach((boundary) => {
                     boundary.classList.remove("youlose");
@@ -79,6 +61,7 @@ window.onload = function () {
                 once = 0;
                 start = true;
                 updateTextandScore("Begin by moving your mouse over the \"S\" ", 0);
+                resetPosition();
             });
         }
     });
@@ -86,5 +69,10 @@ window.onload = function () {
     const updateTextandScore = (text, score) => {
         document.getElementById("status").innerText = text;
         document.getElementsByClassName("example")[0].innerText = score;
+    }
+
+    const resetPosition=()=>{
+        document.getElementById("start").style.left = "0px";
+        document.getElementById("start").style.top = "205px";
     }
 }
