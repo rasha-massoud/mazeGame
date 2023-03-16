@@ -13,6 +13,7 @@ window.onload = function () {
                     if (once == 6) {
                         start = false;
                         updateTextandScore("Ouppss! You Lost.", score - 10);
+                        resetPosition();
                     }
                 });
             });
