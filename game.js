@@ -1,7 +1,7 @@
 window.onload = function () {
     let start = false;
     let score = 0;
-    let updated = false;
+    let once = 0;
     document.querySelector(".example").innerText = score;
 
     document.getElementById("start").addEventListener("mouseover", () => {
@@ -11,32 +11,32 @@ window.onload = function () {
                     boundary.classList.add("youlose");
                     document.getElementById("status").innerText = "Ouppss! You Lost.";
                     start = false;
+                    once += 6;
+                    console.log(once);
+                    if (once == 6) {
+                        score -= 10;
+                        document.getElementsByClassName("example")[0].innerText = score;
+                    }
                 });
-                updated = true;
 
             });
         });
-        // if (updated) {
-        //     score -= 10;
-        //     document.getElementsByClassName("example")[0].innerText = score;
-        //     // updated = false;
-        // }
     });
 
-    // if (start == false) {
-    //     document.getElementById("start").addEventListener("click", () => {
-    //         document.querySelectorAll(".boundary").forEach((boundary) => {
-    //             boundary.style.backgroundColor = "#eeeeee";
-    //             start = true;
-    //             document.getElementById("status").innerText = "Begin by moving your mouse over the \"S\" ";
-    //         });
+    if (!start) {
+        document.getElementById("start").addEventListener("click", () => {
+            document.querySelectorAll(".boundary").forEach((boundary) => {
+                boundary.classList.remove("youlose");
+                document.getElementById("status").innerText = "Begin by moving your mouse over the \"S\" ";
+            });
+            once = 0;
+            start = true;
+            //CONVERT THE ABOVE TO FUNCTION
+            score = 0;
+            document.getElementsByClassName("example")[0].innerText = score;
 
-    //         //CONVERT THE ABOVE TO FUNCTION
-    //         score = 0;
-    //         document.getElementsByClassName("example")[0].innerText = score;
-
-    //     });
-    // }
+        });
+    }
 
     // //UPDATE NOT TO GET OUT FROM THE MAZEEE
     // let div = document.getElementById('start');
