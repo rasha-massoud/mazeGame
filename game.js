@@ -33,16 +33,16 @@ window.onload = function () {
         offset.y = e.clientY - div.offsetTop;
     });
 
-    if (!start) {
-        document.getElementById("start").addEventListener("click", () => {
-            document.querySelectorAll(".boundary").forEach((boundary) => {
-                boundary.classList.remove("youlose");
-            });
-            once = 0;
-            start = true;
-            updateTextandScore("Begin by moving your mouse over the \"S\" ", 0);
-        });
-    }
+    // if (!start) {
+    //     document.getElementById("start").addEventListener("click", () => {
+    //         document.querySelectorAll(".boundary").forEach((boundary) => {
+    //             boundary.classList.remove("youlose");
+    //         });
+    //         once = 0;
+    //         start = true;
+    //         updateTextandScore("Begin by moving your mouse over the \"S\" ", 0);
+    //     });
+    // }
 
     // Add mousemove event listener to the document
     document.addEventListener('mousemove', function (e) {
@@ -69,9 +69,18 @@ window.onload = function () {
             startRect.bottom >= endRect.top &&
             startRect.top <= endRect.bottom) {
             updateTextandScore("You Won.", score + 5);
-
         }
 
+        if (!start) {
+            document.getElementById("start").addEventListener("click", () => {
+                document.querySelectorAll(".boundary").forEach((boundary) => {
+                    boundary.classList.remove("youlose");
+                });
+                once = 0;
+                start = true;
+                updateTextandScore("Begin by moving your mouse over the \"S\" ", 0);
+            });
+        }
     });
 
     const updateTextandScore = (text, score) => {
