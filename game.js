@@ -9,16 +9,11 @@ window.onload = function () {
             boundary.addEventListener("mouseover", () => {
                 document.querySelectorAll(".boundary").forEach((boundary) => {
                     boundary.classList.add("youlose");
-                    document.getElementById("status").innerText = "Ouppss! You Lost.";
-                    start = false;
                     once += 6;
-                    console.log(once);
                     if (once == 6) {
-                        score -= 10;
-                        document.getElementsByClassName("example")[0].innerText = score;
+                        start = updateTextandScore("Ouppss! You Lost.", score - 10, false);
                     }
                 });
-
             });
         });
     });
@@ -27,14 +22,9 @@ window.onload = function () {
         document.getElementById("start").addEventListener("click", () => {
             document.querySelectorAll(".boundary").forEach((boundary) => {
                 boundary.classList.remove("youlose");
-                document.getElementById("status").innerText = "Begin by moving your mouse over the \"S\" ";
             });
             once = 0;
-            start = true;
-            //CONVERT THE ABOVE TO FUNCTION
-            score = 0;
-            document.getElementsByClassName("example")[0].innerText = score;
-
+            start = updateTextandScore("Begin by moving your mouse over the \"S\" ", 0, true);
         });
     }
 
@@ -84,4 +74,10 @@ window.onload = function () {
     //         document.getElementsByClassName("example")[0].innerText = score;
     //     }
     // });
+
+    const updateTextandScore = (text, score, start) => {
+        document.getElementById("status").innerText = text;
+        document.getElementsByClassName("example")[0].innerText = score;
+        return start;
+    }
 }
